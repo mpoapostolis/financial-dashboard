@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckIcon, MountainIcon } from "lucide-react";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  const cookie = cookies().get("pb_auth")?.value;
+  if (!cookie) return redirect("/auth");
+
   return (
     <div className="flex flex-col min-h-[100dvh] bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100">
       <header className="px-4 sticky top-0 lg:px-6 h-14 flex items-center bg-white dark:bg-gray-900">

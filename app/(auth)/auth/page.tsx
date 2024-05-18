@@ -1,12 +1,16 @@
-import Link from "next/link";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ChromeIcon } from "lucide-react";
 import GoogleLogin from "@/components/google-login";
+import { login } from "@/app/actions/login";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default function Page() {
+  const cookie = cookies().get("pb_auth")?.value;
+  // if (cookie) return redirect("/admin");
+
   return (
     <div className="flex min-h-[100dvh] items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 py-12 px-4">
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-2xl">
