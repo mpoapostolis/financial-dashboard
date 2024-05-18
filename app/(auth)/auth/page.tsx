@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChromeIcon } from "lucide-react";
+import GoogleLogin from "@/components/google-login";
 
 export default function Page() {
   return (
@@ -67,13 +68,6 @@ export default function Page() {
                 >
                   Sign in
                 </Button>
-                <Button
-                  className="w-full rounded-md border-gray-300 py-2 text-gray-600 hover:bg-gray-100"
-                  variant="outline"
-                >
-                  <ChromeIcon className="mr-2 h-4 w-4" />
-                  Sign in with Google
-                </Button>
               </form>
             </TabsContent>
             <TabsContent value="register">
@@ -120,15 +114,9 @@ export default function Page() {
                 >
                   Register
                 </Button>
-                <Button
-                  className="w-full rounded-md border-gray-300 py-2 text-gray-600 hover:bg-gray-100"
-                  variant="outline"
-                >
-                  <ChromeIcon className="mr-2 h-4 w-4" />
-                  Sign up with Google
-                </Button>
               </form>
             </TabsContent>
+            <GoogleLogin />
           </Tabs>
         </div>
       </div>
