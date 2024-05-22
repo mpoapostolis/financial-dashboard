@@ -1,56 +1,61 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  DropdownMenuTrigger,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-  DropdownMenuContent,
-  DropdownMenu,
-  DropdownMenuRadioItem,
-  DropdownMenuRadioGroup,
-} from "@/components/ui/dropdown-menu";
-import {
-  PopoverTrigger,
-  PopoverContent,
-  Popover,
-} from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import {
-  CardDescription,
-  CardTitle,
-  CardHeader,
-  CardContent,
-  Card,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
-import { ResponsiveLine } from "@nivo/line";
-import { ResponsiveBar } from "@nivo/bar";
-import { ResponsivePie } from "@nivo/pie";
+import { Input } from "@/components/ui/input";
+
 import {
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableCell,
-  TableBody,
-  Table,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
+
 import {
-  ArrowLeftIcon,
-  ArrowUpDownIcon,
-  BarChartIcon,
-  BellIcon,
-  CalendarClockIcon,
-  DownloadIcon,
-  HomeIcon,
-  PieChartIcon,
-  ReceiptIcon,
-  SearchIcon,
-  SettingsIcon,
-  WalletIcon,
+    ArrowLeftIcon,
+    ArrowUpDownIcon,
+    BarChartIcon,
+    BellIcon,
+    CalendarClockIcon,
+    DownloadIcon,
+    HomeIcon,
+    PieChartIcon,
+    ReceiptIcon,
+    SearchIcon,
+    SettingsIcon,
+    TvIcon,
+    WalletIcon,
 } from "lucide-react";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
+  const cookie = cookies().get("pb_auth")?.value;
+  if (!cookie) return redirect("/auth");
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">

@@ -6,9 +6,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  const cookie = cookies().get("pb_auth")?.value;
-  if (!cookie) return redirect("/auth");
-
   return (
     <div className="flex flex-col min-h-[100dvh] bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100">
       <header className="px-4 sticky top-0 lg:px-6 h-14 flex items-center bg-white dark:bg-gray-900">
@@ -68,7 +65,7 @@ export default function Home() {
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link
                     className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700 disabled:pointer-events-none disabled:opacity-50"
-                    href="#"
+                    href="/admin"
                   >
                     Get Started
                   </Link>
