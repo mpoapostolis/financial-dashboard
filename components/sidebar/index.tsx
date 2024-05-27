@@ -1,0 +1,98 @@
+import { logout } from "@/app/actions/logout";
+import { cn } from "@/lib/utils";
+import {
+  HomeIcon,
+  BarChartIcon,
+  WalletIcon,
+  ReceiptIcon,
+  SettingsIcon,
+  LogOut,
+  SunIcon,
+} from "lucide-react";
+import Link from "next/link";
+import { Switch } from "../ui/switch";
+
+const items = [
+  {
+    icon: HomeIcon,
+    href: "/admin",
+    label: "Home",
+  },
+  {
+    icon: BarChartIcon,
+    href: "/admin/dashboard",
+    label: "Dashboard",
+  },
+  {
+    icon: WalletIcon,
+    href: "/admin/accounts",
+    label: "Accounts",
+  },
+  {
+    icon: ReceiptIcon,
+    href: "/admin/taxes",
+    label: "Taxes",
+  },
+  {
+    icon: SettingsIcon,
+    href: "/admin/settings",
+    label: "Settings",
+    className: "mt-auto",
+  },
+];
+const open = true;
+export function SideBar() {
+  return (
+    <div
+      style={{
+        height: `calc(100vh - 56px)`,
+      }}
+      className={cn(
+        "absolute   md:sticky top-14 bg-gray-100/80 dark:bg-gray-800/80 border-r py-4",
+        {
+          "md:w-14 hidden md:block": !open,
+          "md:w-56": open,
+        },
+      )}
+    >
+      <nav
+        className={cn("flex  h-full flex-col gap-2", {
+          "items-center": !open,
+          "px-3": open,
+        })}
+      >
+        {items.map((item) => (
+          <Link
+            className={cn(
+              "flex items-center gap-3 text-lg rounded-lg px-3 py-2 text-gray-500  font-semibold transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+              item.className,
+            )}
+            key={item.href}
+            href={item.href}
+          >
+            <item.icon size={16} />
+            {open && <span className="text-xs">{item.label}</span>}
+          </Link>
+        ))}
+        <button
+          className="flex items-center gap-3 text-lg rounded-lg px-3 py-2 text-gray-500  font-semibold transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+          type="submit"
+        >
+          <SunIcon size={16} />
+          {open && <span className="text-xs">Dark Theme</span>}
+          {/* {open && <Switch className="ml-auto [--theme:dark]" />} */}
+        </button>
+
+        <form action={logout}>
+          <button
+            className="flex items-center gap-3 text-lg rounded-lg px-3 py-2 text-gray-500  font-semibold transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            type="submit"
+          >
+            <LogOut size={16} />
+            {open && <span className="text-xs">Sign out</span>}
+          </button>
+        </form>
+      </nav>
+    </div>
+  );
+}

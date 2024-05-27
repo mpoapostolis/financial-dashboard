@@ -1,10 +1,11 @@
+import { cookies } from "next/headers";
 import PocketBase from "pocketbase";
 
-const clientPb = new PocketBase("https://api.findasb.com");
+const pb = new PocketBase("https://api.findasb.com");
 export const getPb = () => {
-  if (clientPb.authStore.isValid) return clientPb;
+  if (pb.authStore.isValid) return pb;
   else {
-    clientPb.authStore.loadFromCookie("auth");
-    return clientPb;
+    pb.authStore.loadFromCookie(cookies().get("pb_auth")?.value ?? "");
+    return pb;
   }
 };
