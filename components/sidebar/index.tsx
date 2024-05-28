@@ -8,9 +8,11 @@ import {
   SettingsIcon,
   LogOut,
   SunIcon,
+  MoonIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { Switch } from "../ui/switch";
+import { editTheme } from "@/app/actions/ui-actions";
+import { getPb } from "@/lib/pb";
 
 const items = [
   {
@@ -40,8 +42,11 @@ const items = [
     className: "mt-auto",
   },
 ];
-const open = true;
+
 export function SideBar() {
+  const pb = getPb();
+  const currentTheme = pb.authStore.model?.ui_state?.theme ?? "light";
+  const open = pb.authStore.model?.ui_state?.expandedMenu ?? false;
   return (
     <div
       style={{
@@ -58,7 +63,7 @@ export function SideBar() {
       <nav
         className={cn("flex  h-full flex-col gap-2", {
           "items-center": !open,
-          "px-3": open,
+          "px-2": open,
         })}
       >
         {items.map((item) => (
@@ -74,14 +79,29 @@ export function SideBar() {
             {open && <span className="text-xs">{item.label}</span>}
           </Link>
         ))}
-        <button
-          className="flex items-center gap-3 text-lg rounded-lg px-3 py-2 text-gray-500  font-semibold transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-          type="submit"
-        >
-          <SunIcon size={16} />
-          {open && <span className="text-xs">Dark Theme</span>}
-          {/* {open && <Switch className="ml-auto [--theme:dark]" />} */}
-        </button>
+        <form action={editTheme}>
+          <button
+            className="flex items-center gap-3 text-lg rounded-lg px-3 py-2 text-gray-500  font-semibold transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            type="submit"
+          >
+            <input
+              type="hidden"
+              name="theme"
+              value={currentTheme === "light" ? "dark" : "light"}
+            />
+            {currentTheme === "dark" ? (
+              <SunIcon size={16} />
+            ) : (
+              <MoonIcon size={16} />
+            )}
+            {open && (
+              <span className="text-xs">
+                {currentTheme === "light" ? "Dark Theme" : "Light Theme"}
+              </span>
+            )}
+            {/* {open && <Switch className="ml-auto [--theme:dark]" />} */}
+          </button>
+        </form>
 
         <form action={logout}>
           <button

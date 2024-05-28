@@ -1,3 +1,4 @@
+import { editExpandMenu } from "@/app/actions/ui-actions";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,16 +8,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { getPb } from "@/lib/pb";
-import { Menu, SunIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 
 export async function Header() {
   return (
     <header className="flex sticky top-0 h-14 items-center gap-4 border-b opacity-100 bg-gray-100/80 px-5 dark:bg-gray-800/80">
-      <Button className="p-0" size="sm" variant="ghost">
-        <Menu className="text-primary w-4 h-4" />
-      </Button>
+      <form action={editExpandMenu}>
+        <Button className="p-0" size="sm" variant="ghost">
+          <Menu className="text-primary w-4 h-4" />
+        </Button>
+      </form>
 
       <Link className="font-bold mr-auto" href="/">
         <span>Findasb</span>
