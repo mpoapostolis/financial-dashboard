@@ -18,7 +18,7 @@ export default function GoogleLogin() {
           })
           .then(() => {
             setCookie("pb_auth", pb.authStore.exportToCookie());
-            router.push("/admin");
+            router.push("/overview");
           });
       }}
       className="w-full rounded-md border-gray-300 py-2 text-gray-600 hover:bg-gray-100"

@@ -17,27 +17,27 @@ import { getPb } from "@/lib/pb";
 const items = [
   {
     icon: HomeIcon,
-    href: "/admin",
+    href: "/overview",
     label: "Home",
   },
   {
     icon: BarChartIcon,
-    href: "/admin/dashboard",
+    href: "/dashboard",
     label: "Dashboard",
   },
   {
     icon: WalletIcon,
-    href: "/admin/accounts",
+    href: "/accounts",
     label: "Accounts",
   },
   {
     icon: ReceiptIcon,
-    href: "/admin/taxes",
+    href: "/taxes",
     label: "Taxes",
   },
   {
     icon: SettingsIcon,
-    href: "/admin/settings",
+    href: "/settings",
     label: "Settings",
     className: "mt-auto",
   },

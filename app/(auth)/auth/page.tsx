@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 export default function Page() {
   const cookie = cookies().get("pb_auth")?.value;
-  if (cookie) return redirect("/admin");
+  if (cookie) return redirect("/overview");
   return (
     <div className="flex min-h-[100dvh] items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 py-12 px-4">
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-2xl">
