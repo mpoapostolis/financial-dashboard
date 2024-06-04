@@ -9,6 +9,8 @@ import {
   LogOut,
   SunIcon,
   MoonIcon,
+  DollarSign,
+  User2,
 } from "lucide-react";
 import Link from "next/link";
 import { editTheme } from "@/app/actions/ui-actions";
@@ -21,20 +23,16 @@ const items = [
     label: "Home",
   },
   {
-    icon: BarChartIcon,
-    href: "/dashboard",
-    label: "Dashboard",
+    icon: DollarSign,
+    href: "/income",
+    label: "Income",
   },
   {
-    icon: WalletIcon,
-    href: "/accounts",
-    label: "Accounts",
+    icon: User2,
+    href: "/employees",
+    label: "Employees",
   },
-  {
-    icon: ReceiptIcon,
-    href: "/taxes",
-    label: "Taxes",
-  },
+
   {
     icon: SettingsIcon,
     href: "/settings",
@@ -53,7 +51,7 @@ export function SideBar() {
         height: `calc(100vh - 56px)`,
       }}
       className={cn(
-        "absolute   md:sticky top-14 bg-gray-100/80 dark:bg-gray-800/80 border-r py-4",
+        "absolute   md:sticky top-14 bg-gray-100 dark:bg-gray-800 border-r py-4",
         {
           "md:w-14 hidden md:block": !open,
           "md:w-56": open,

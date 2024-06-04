@@ -17,7 +17,9 @@ export default function RootLayout({
       <Header />
       <div className="flex">
         <SideBar />
-        {children}
+        <main suppressHydrationWarning className="md:p-8 p-2  w-full">
+          {children}
+        </main>
       </div>
     </>
   );
