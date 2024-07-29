@@ -1,10 +1,12 @@
 "use client";
-import "./globals.css";
-import "./data-tables-css.css";
-import "./satoshi.css";
+import "../globals.css";
+import "../data-tables-css.css";
+import "../satoshi.css";
 import { useState, useEffect } from "react";
 import Loader from "@/components/common/Loader";
-
+import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
+import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
+import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header";
 
@@ -24,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <div className="dark:bg-black dark:text-bodydark">
+        <div className="dark bg-black dark:text-bodydark">
           {loading ? (
             <Loader />
           ) : (
