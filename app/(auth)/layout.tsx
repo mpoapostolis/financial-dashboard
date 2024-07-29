@@ -2,6 +2,8 @@ import "../globals.css";
 import "../data-tables-css.css";
 import "../satoshi.css";
 import "../HRExample.css";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Next.js",
@@ -13,6 +15,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookie = cookies().get("pb_auth")?.value;
+  if (cookie) return redirect("/");
   return (
     <html lang="en">
       <body className="dark grid h-screen w-screen place-items-center border  bg-black">
