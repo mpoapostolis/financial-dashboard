@@ -7,7 +7,7 @@ const TablesPage = () => {
   return (
     <div className="h-80  w-full">
       <Breadcrumb pageName="Employees" />
-      <Employees isDarkMode />
+      <Employees />
     </div>
   );
 };

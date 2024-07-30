@@ -1,8 +1,6 @@
 import "../globals.css";
 import "../data-tables-css.css";
 import "../satoshi.css";
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header";
 import { cookies } from "next/headers";

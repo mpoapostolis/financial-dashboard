@@ -1,7 +1,6 @@
 import "../globals.css";
 import "../data-tables-css.css";
 import "../satoshi.css";
-import "../HRExample.css";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
