@@ -1,3 +1,4 @@
+"use client";
 import { AreaChart, Card, Title } from "@tremor/react";
 
 const chartdata = [
@@ -37,17 +38,23 @@ const valueFormatter = function (number: number) {
   return "$ " + new Intl.NumberFormat("us").format(number).toString();
 };
 
-const Area = () => (
-  <Card>
-    <Title>Newsletter revenue over time (USD)</Title>
-    <AreaChart
-      className="mt-4 h-72"
-      data={chartdata}
-      index="date"
-      categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-      colors={["indigo", "cyan"]}
-      valueFormatter={valueFormatter}
-    />
-  </Card>
-);
+const Area = (props: { data: string; [key: string]: string }) => {
+  const categories = Object.keys(props?.data?.at(0) ?? {}).filter(
+    (e) => e !== "date",
+  );
+  return (
+    <Card>
+      <Title>Revenue / Expense </Title>
+      <AreaChart
+        className="mt-4 h-72"
+        // @ts-ignore
+        data={props.data}
+        index="date"
+        categories={categories}
+        colors={["indigo", "cyan"]}
+        valueFormatter={valueFormatter}
+      />
+    </Card>
+  );
+};
 export default Area;

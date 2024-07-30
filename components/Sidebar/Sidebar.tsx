@@ -42,7 +42,7 @@ const Sidebar = ({}: SidebarProps) => {
   return (
     <aside
       className={cn(
-        `left-0 top-0 z-9999 flex h-screen w-20 flex-col overflow-y-hidden bg-black duration-300 ease-linear  dark:bg-boxdark lg:static lg:translate-x-0 `,
+        `left-0 top-0 z-40 flex h-screen w-20 flex-col overflow-y-hidden bg-black duration-300 ease-linear  dark:bg-boxdark lg:static lg:translate-x-0 `,
         {
           "w-70": isSidebarOpen,
         },
@@ -78,8 +78,8 @@ const Sidebar = ({}: SidebarProps) => {
               {/* <!-- Menu Item Calendar --> */}
               <li>
                 <LinkItem
-                  title="Calendar"
-                  href="/calendar"
+                  title="Bookings"
+                  href="/bookings"
                   icon={<Calendar className="h-6 w-6" />}
                 ></LinkItem>
               </li>

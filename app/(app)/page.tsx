@@ -1,16 +1,14 @@
-import ECommerce from "@/components/Dashboard/E-commerce";
-import { Metadata } from "next";
+import { Dashboard } from "@/components/Dashboard";
+import { endOfMonth, startOfMonth, subDays } from "date-fns";
+import { getPocketBaseServer } from "../libs/pb-server";
+import { TypeVessel } from "../server-actions/vessel";
+import { redirect } from "next/navigation";
+import { TypeTransaction } from "../server-actions/bookings";
 
-export const metadata: Metadata = {
-  title: "ShakibAdmin | Next.js E-commerce Dashboard Template",
-  description: "This is Home Blog page for TailAdmin Next.js",
-  // other metadata
-};
-
-export default function Home() {
+export default async function Home() {
   return (
     <>
-      <ECommerce />
+      <Dashboard />
     </>
   );
 }

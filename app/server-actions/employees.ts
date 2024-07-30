@@ -3,55 +3,67 @@
 import { revalidatePath } from "next/cache";
 import { getPocketBaseServer } from "../libs/pb-server";
 
+export type TypeEmployee = {
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  id: string;
+  name: string;
+  cost_per_trip: number;
+  user: string;
+  group: string;
+  job_title: string;
+};
+
 export async function addEmploye(formData: FormData) {
   const name = formData.get("name");
-  const email = formData.get("email");
-  const payPerHour = formData.get("payPerHour");
-  const vessel = formData.get("vessel");
-  const hoursPerWeek = formData.get("hoursPerWeek");
-  const jobTitle = formData.get("jobTitle");
-  const pb = await getPocketBaseServer();
+  const group = formData.get("group");
+  const cost_per_trip = formData.get("cost_per_trip");
+  const job_title = formData.get("job_title");
+  const pb = getPocketBaseServer();
   const myId = pb.authStore.model?.id;
-  await pb.collection("members").create({
-    owner: myId,
-    name: name?.toString(),
-    email: email?.toString(),
-    cost_per_hour: payPerHour?.toString(),
-    hours_per_week: hoursPerWeek?.toString(),
-
-    job_title: jobTitle?.toString(),
-    tracker: vessel?.toString(),
-  });
+  await pb
+    .collection("employees")
+    .create({
+      user: myId,
+      name: name?.toString(),
+      cost_per_trip: cost_per_trip?.toString(),
+      job_title: job_title?.toString(),
+      group: group?.toString(),
+    })
+    .catch(console.error);
+  revalidatePath("/vessels");
   return revalidatePath("/employees");
 }
 
 export async function editEmployee(formData: FormData) {
-  const id = formData.get("id");
   const name = formData.get("name");
-  const email = formData.get("email");
-  const payPerHour = formData.get("payPerHour");
-  const hoursPerWeek = formData.get("hoursPerWeek");
-  const jobTitle = formData.get("jobTitle");
-  const vessel = formData.get("vessel");
-  const pb = await getPocketBaseServer();
-  if (!id) return;
+  const id = formData.get("id");
+  const group = formData.get("group");
+  const cost_per_trip = formData.get("cost_per_trip");
+  const job_title = formData.get("job_title");
+  const pb = getPocketBaseServer();
   const myId = pb.authStore.model?.id;
-  await pb.collection("members").update(id?.toString(), {
-    owner: myId,
-    name: name?.toString(),
-    email: email?.toString(),
-    cost_per_hour: payPerHour?.toString(),
-    hours_per_week: hoursPerWeek?.toString(),
-    tracker: vessel?.toString(),
-    job_title: jobTitle?.toString(),
-  });
+  if (!id) return;
+  await pb
+    .collection("employees")
+    .update(id?.toString(), {
+      user: myId,
+      name: name?.toString(),
+      cost_per_trip: cost_per_trip?.toString(),
+      job_title: job_title?.toString(),
+      group: group?.toString(),
+    })
+    .catch(console.error);
+  revalidatePath("/vessels");
   return revalidatePath("/employees");
 }
 
 export async function deleteEmployee(formData: FormData) {
   const id = formData.get("id") ?? "";
-  const pb = await getPocketBaseServer();
+  const pb = getPocketBaseServer();
 
-  await pb.collection("members").delete(id.toString());
+  await pb.collection("employees").delete(id.toString());
+  revalidatePath("/vessels");
   return revalidatePath("/employees");
 }
