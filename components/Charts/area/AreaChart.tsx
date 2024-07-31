@@ -1,5 +1,5 @@
 "use client";
-import { AreaChart, Card, Title } from "@tremor/react";
+import { AreaChart, BarChart, Card, DonutChart, Title } from "@tremor/react";
 
 const chartdata = [
   {
@@ -38,21 +38,25 @@ const valueFormatter = function (number: number) {
   return "$ " + new Intl.NumberFormat("us").format(number).toString();
 };
 
-const Area = (props: { data: string; [key: string]: string }) => {
+const Area = (props: { data: { [key: string]: string }[] }) => {
   const categories = Object.keys(props?.data?.at(0) ?? {}).filter(
     (e) => e !== "date",
   );
+
   return (
     <Card>
-      <Title>Revenue / Expense </Title>
-      <AreaChart
-        className="mt-4 h-72"
+      <Title>Revenue </Title>
+
+      <BarChart
+        className="mt-6"
         // @ts-ignore
+
         data={props.data}
         index="date"
         categories={categories}
-        colors={["indigo", "cyan"]}
+        colors={["indigo", "cyan", "purple", "pink", "yellow", "green", "red"]}
         valueFormatter={valueFormatter}
+        yAxisWidth={48}
       />
     </Card>
   );

@@ -1,5 +1,6 @@
 import { getPocketBaseServer } from "@/app/libs/pb-server";
 import { TypeTransaction } from "@/app/server-actions/bookings";
+import { TypeVessel } from "@/app/server-actions/vessel";
 import Calendar from "@/components/Calender";
 import { Metadata } from "next";
 
@@ -14,9 +15,10 @@ const CalendarPage = async () => {
   const transactions = await pb
     .collection("bookings")
     .getFullList<TypeTransaction>({});
+  const vessels = await pb.collection("groups").getFullList<TypeVessel>({});
   return (
     <>
-      <Calendar transactions={transactions} />
+      <Calendar vessels={vessels} transactions={transactions} />
     </>
   );
 };

@@ -54,7 +54,7 @@ export default async function Page() {
           <TableHead>
             <TableRow>
               <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>Revenue per book</TableHeaderCell>
+              <TableHeaderCell>Revenue per Day</TableHeaderCell>
               <TableHeaderCell>Maintance Cost</TableHeaderCell>
               <TableHeaderCell>Members</TableHeaderCell>
               <TableHeaderCell className="text-right">Actions</TableHeaderCell>

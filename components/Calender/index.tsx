@@ -13,8 +13,13 @@ import { BadgeDelta, Select, SelectItem } from "@tremor/react";
 import { TransactionModal } from "../TransactionModal";
 import { Badge } from "../ui";
 import { TypeTransaction } from "@/app/server-actions/bookings";
+import { groupBy } from "../Dashboard";
+import { TypeVessel } from "@/app/server-actions/vessel";
 
-const Calendar = (props: { transactions: TypeTransaction[] }) => {
+const Calendar = (props: {
+  vessels: TypeVessel[];
+  transactions: TypeTransaction[];
+}) => {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const year = new Date().getFullYear();
   const start = startOfMonth(new Date(year, selectedMonth, 1));
@@ -24,7 +29,6 @@ const Calendar = (props: { transactions: TypeTransaction[] }) => {
 
   // Create an array to represent the calendar grid with empty slots for days before the first day of the month
   const calendarGrid = [...Array(getDay(start)).fill(null), ...daysInMonth];
-
   return (
     <>
       <Breadcrumb
@@ -87,25 +91,31 @@ const Calendar = (props: { transactions: TypeTransaction[] }) => {
                       return (
                         <td
                           key={dayIndex}
-                          className="ease relative grid h-2 cursor-pointer place-items-center border border-stroke text-black transition duration-500 hover:bg-gray dark:border-strokedark dark:text-white dark:hover:bg-meta-4 md:h-25 xl:h-31"
+                          className="ease relative  grid h-20 cursor-pointer place-items-center border border-stroke text-black transition duration-500 hover:bg-gray dark:border-strokedark dark:text-white dark:hover:bg-meta-4 md:h-25 xl:h-31"
                         >
                           <TransactionModal
+                            vessels={props.vessels}
                             transactions={props.transactions}
                             key={day}
                             date={day}
                           >
-                            <div className="grid  place-items-center gap-4">
+                            <div className="h  grid place-items-center gap-4">
                               <div className="col-span-2">
                                 {day ? format(day, "d") : null}
                               </div>
                               {bookings > 0 && (
                                 <Badge className="col-span-2 h-fit w-fit ">
                                   {
-                                    props.transactions?.filter(
-                                      (t) => t.bookingDate === currentTime,
+                                    Array.from(
+                                      groupBy(
+                                        props.transactions?.filter(
+                                          (t) => t.bookingDate === currentTime,
+                                        ),
+                                        (s) => s.group,
+                                      ),
                                     ).length
                                   }
-                                  <div> bookings </div>
+                                  <div> Vessel </div>
                                 </Badge>
                               )}
                             </div>

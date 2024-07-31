@@ -5,14 +5,15 @@ import { Button, Dialog, DialogPanel, Divider } from "@tremor/react";
 import { format } from "date-fns";
 import { Fragment, useEffect, useState, useTransition } from "react";
 import { useTransactions } from "@/hooks/useTransactions";
+import { TypeVessel } from "@/app/server-actions/vessel";
 
 export function TransactionModal(props: {
+  vessels: TypeVessel[];
   transactions: TypeTransaction[];
   children: React.ReactNode;
   date: string;
 }) {
   const [open, setOpen] = useState(false);
-  const { data: vessels } = useVessels();
 
   const map = new Map();
   props.transactions
@@ -54,7 +55,7 @@ export function TransactionModal(props: {
                 hidden
               />
               <div className="grid w-full grid-cols-2 items-center gap-4">
-                {vessels?.map((v) => (
+                {props.vessels?.map((v) => (
                   <Fragment key={v.id}>
                     <label className="block text-black dark:text-white">
                       {v.name}:
@@ -63,7 +64,7 @@ export function TransactionModal(props: {
                       type="number"
                       name={v.id}
                       defaultValue={map.get(v.id) ?? 0}
-                      placeholder="Trips completed"
+                      placeholder="Days"
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent px-3 py-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
                   </Fragment>

@@ -113,7 +113,6 @@ export function Dashboard() {
     };
   });
 
-  console.log(yy);
   const xx = groupBy(
     filteredTransaction?.map((t) => ({
       name: t.groupName,
@@ -182,7 +181,7 @@ export function Dashboard() {
         <div className="space-y-5 py-5">
           {/*  @ts-ignore */}
           <AreaChart data={yy} />
-          {vessel === "all" && <SimpleBar data={arr} />}
+          <SimpleBar data={arr} />
         </div>
       </div>
     </>

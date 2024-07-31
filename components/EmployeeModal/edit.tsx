@@ -85,7 +85,7 @@ export function EmployeeModalEdit(props: {
               <input type="hidden" name="id" value={props.employee.id} />
               <div className="mb-4.5">
                 <label className="mb-2.5 block text-black dark:text-white">
-                  Cost per trip <span className="text-meta-1">*</span>
+                  Cost per day <span className="text-meta-1">*</span>
                 </label>
                 <input
                   placeholder="Type the cost per trip of the employee here"

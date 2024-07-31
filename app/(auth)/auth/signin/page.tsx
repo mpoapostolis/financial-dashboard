@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import { Metadata } from "next";
 import { clientPb } from "@/app/libs/pb";
 import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
@@ -21,7 +20,7 @@ const SignIn: React.FC = () => {
             <div className="px-26 py-17.5 text-center">
               <Link className="mb-5.5 inline-block" href="/">
                 <h1 className="text-2xl font-semibold text-white">
-                  Shakib Admin
+                  Findasb Admin
                 </h1>
                 <Image
                   className="dark:hidden"

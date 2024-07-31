@@ -48,7 +48,7 @@ const SimpleBar = (props: {
       data={props.data}
       index="name"
       categories={["value"]}
-      colors={["blue"]}
+      colors={["indigo", "cyan", "purple", "pink", "yellow", "green", "red"]}
       valueFormatter={valueFormatter}
       yAxisWidth={48}
     />
